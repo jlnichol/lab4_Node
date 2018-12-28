@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Definitions</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<link rel="stylesheet" href="stylesheets/style.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+<body class= "has-background-primary">
+  <nav class= "navbar">
+      <div class= "container">
+        <div class= "navbar-brand">
+      <span class="navbar-burger burger" data-target= "navbarMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      </div>
+      <div id="navbarMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <a href="cities.html" class="navbar-item"> City Search </a>
+          <a class="navbar-item is-active"> Dictionary Fun </a>
+        </div>
+      </div>
+      </div>
+    </nav>
+    <div class="container">
+      <br><br>
+<h1 class="subtitle is-4">Dictionary Fun</h1>
+<form>
+Enter a word to search: <input type="text" id="owlfield" value="">
+<div>
+<input id="submitButton" type="submit" value="Submit"> <br> <br>
+</div>
+<div class="content">
+Definition: <span id="defined">Unknown</span>
+</div>
+</form>
+</div>
+<img src="images/owl.png" alt="owl" style="width:128px;height:128px;">
+<script>
+
+$("#submitButton").click(function(e) {
+        e.preventDefault();
+  var url = "owl?q=" + $("#owlfield").val();
+  $.getJSON(url,function(data) {
+    var everything;
+    everything = "<ul>";
+    $.each(data, function(i,item) {
+      everything += "<li> "+data[i].defenition;
+    });
+    everything += "</ul>";
+    $("#defined").html(everything);
+    console.log(everything);
+  });
+});
+
+</script>
+</body>
+</html>
